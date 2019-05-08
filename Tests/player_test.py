@@ -2,7 +2,7 @@
 import context
 import mock
 import unittest
-from minesweeper.player import Player
+from player import Player
 
 class Player_Test(unittest.TestCase):
 

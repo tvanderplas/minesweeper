@@ -4,10 +4,10 @@ import numpy as np
 
 class Player:
 
-	def __init__(self):
-		self.game = Minesweeper()
+	def __init__(self, width:int=30, height:int=16, mines:int=99):
+		self.game = Minesweeper(width, height, mines)
 		self.stuck = [False, False, False]
-		self.game.clear(8, 15)
+		self.game.clear(height // 2, width // 2)
 
 	def __i(self, a: list, b: list):
 		"""return the intersection of a and b (a ∩ b)"""
@@ -100,10 +100,10 @@ class Player:
 
 	def play(self):
 		while self.game.lose == False and all(self.stuck) == False:
-			while self.game.lose == False and self.stuck[2] == False:
-				self.study()
-			self.check()
-			self.act()
+			while self.game.lose == False and all(self.stuck[:2]) == False:
+				self.check()
+				self.act()
+			self.study()
 
 	def play_series(self, games: int):
 		pass

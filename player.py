@@ -25,6 +25,10 @@ class Player:
 	def update(self):
 		self.view = self.game.view
 
+	def to_index(self, arr, x_min:int=0, y_min:int=0):
+		indices = np.where(arr)
+		return [i for i in zip(indices[0] + x_min, indices[1] + y_min)]
+
 	def get_adj_val(self, x, y, value=''):
 		x_min = (x - 1) if x > 0 else 0
 		y_min = (y - 1) if y > 0 else 0
@@ -49,8 +53,7 @@ class Player:
 		share_unknown = lambda a, b: len(self.__i(
 			self.get_adj_val(x, y), self.get_adj_val(a, b))) > 0
 
-		indices = np.where(self.view[x_min:x_max, y_min:y_max])
-		box = [i for i in zip(indices[0] + x_min, indices[1] + y_min)]
+		box = self.to_index(self.view[x_min:x_max, y_min:y_max], x_min, y_min)
 		fbox = self.__i(self.__c(box, [(x, y)]), self.get_edges())
 		return [i for i in fbox if is_big(*i) and share_unknown(*i)]
 

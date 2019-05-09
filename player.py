@@ -121,3 +121,4 @@ class Player:
 if __name__ == '__main__':
 	p = Player()
 	p.play()
+	p.game.player_view()

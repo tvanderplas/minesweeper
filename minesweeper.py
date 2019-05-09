@@ -81,7 +81,7 @@ class Minesweeper(object):
 		not_0 = np.core.defchararray.not_equal(self._cover[x, y], '0')
 		if self._is_started == False:
 			self.__start(x, y)
-		if not_marked and not_0 and not self._lose:
+		if (not_marked) and (not_0) and not self._lose:
 			self.__clear(x, y)
 			self.__player_view()
 

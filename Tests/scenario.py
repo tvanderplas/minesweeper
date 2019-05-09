@@ -122,6 +122,21 @@ class scenario_7:
 			,['0', 'F',  '', '']]
 		)
 
+class scenario_8:
+
+	def __init__(self):
+		self.shape = (4, 3, 1)
+		self.board = np.array(
+			[[ 2, 3, 3, 2]
+			,[-1,-1,-1,-1]
+			,[ 2, 3, 4,-1]]
+		)
+		self.cover = np.array(
+			[[ '', '',  '', '']
+			,['F', '', 'F', '']
+			,['2', '', '4', '']]
+		)
+
 if __name__ == '__main__':
 	scn = scenario_5()
 	print(scn.board[::-1, ::-1])

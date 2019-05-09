@@ -224,5 +224,20 @@ class Player_Test(unittest.TestCase):
 		self.assertEqual(p.view[3, 3], '2')
 		self.assertEqual(p.view[4, 3], 'F')
 
+	def test_study_8(self):
+		setup = scenario_8()
+		p = Player(*setup.shape)
+		p.game._board = setup.board
+		p.game._cover = setup.cover
+		p.game._is_started = True
+		p.update()
+
+		p.study()
+		p.update()
+
+		self.assertEqual(p.view[0, 3], '')
+		self.assertEqual(p.view[1, 3], 'F')
+		self.assertEqual(p.view[2, 3], 'F')
+
 if __name__ == '__main__':
 	unittest.main()

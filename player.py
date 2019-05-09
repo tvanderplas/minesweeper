@@ -5,9 +5,11 @@ import numpy as np
 class Player:
 
 	def __init__(self, width:int=30, height:int=16, mines:int=99):
-		self.game = Minesweeper(width, height, mines)
+		self.width = width
+		self.height = height
+		self.mines = mines
+		self.game = Minesweeper(self.width, self.height, self.mines)
 		self.stuck = [False, False, False]
-		self.game.clear(height // 2, width // 2)
 
 	def __i(self, a: list, b: list):
 		"""return the intersection of a and b (a ∩ b)"""
@@ -56,10 +58,11 @@ class Player:
 		known = np.core.defchararray.not_equal(self.view, '')
 		nonzero = np.core.defchararray.not_equal(self.view, '0')
 		notmark = np.core.defchararray.not_equal(self.view, 'F')
-		indices = np.where(known & nonzero & notmark)
+		indices = np.where((known) & (nonzero) & (notmark))
 		return [i for i in zip(*indices) if len(self.get_adj_val(*i)) > 0]
 
 	def check(self):
+		self.new_game()
 		self.update()
 		self.stuck[0] = True
 		for cell in self.get_edges():
@@ -71,6 +74,7 @@ class Player:
 					self.unstuck()
 
 	def act(self):
+		self.new_game()
 		self.update()
 		self.stuck[1] = True
 		for cell in self.get_edges():
@@ -82,6 +86,7 @@ class Player:
 					self.unstuck()
 
 	def study(self):
+		self.new_game()
 		self.update()
 		self.stuck[2] = True
 		for cell in self.get_edges():
@@ -98,7 +103,12 @@ class Player:
 						self.game.clear(*i)
 						self.unstuck()
 
+	def new_game(self):
+		if self.game._is_started == False:
+			self.game.clear(self.height // 2, self.width // 2)
+
 	def play(self):
+		self.new_game()
 		while self.game.lose == False and all(self.stuck) == False:
 			while self.game.lose == False and all(self.stuck[:2]) == False:
 				self.check()

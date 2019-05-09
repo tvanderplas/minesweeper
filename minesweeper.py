@@ -54,12 +54,12 @@ class Minesweeper(object):
 				self._mines -= 1
 		self._is_started = True
 
-	def __player_view(self):
+	def player_view(self):
 		print(''.join(['*' * 3 * self._width]))
 		print('\n'.join([' '.join([str(cell).rjust(2) for cell in row]) for row in self._cover]))
 		print(''.join(['*' * 3 * self._width]))
 
-	def __full_view(self):
+	def full_view(self):
 		print(''.join(['*' * 3 * self._width]))
 		print('\n'.join([' '.join([str(cell).rjust(2) for cell in row]) for row in self._board]))
 		print(''.join(['*' * 3 * self._width]))
@@ -74,7 +74,6 @@ class Minesweeper(object):
 				self.__clear(*i)
 		if self._board[x, y] == -1:
 			self._lose = True
-			print('sploded!')
 
 	def clear(self, x, y):
 		not_marked = np.core.defchararray.not_equal(self._cover[x, y], 'F')
@@ -83,7 +82,6 @@ class Minesweeper(object):
 			self.__start(x, y)
 		if (not_marked) and (not_0) and not self._lose:
 			self.__clear(x, y)
-			self.__player_view()
 
 	def mark(self, x, y):
 		if not self._lose:
@@ -91,7 +89,6 @@ class Minesweeper(object):
 				self._cover[x, y] = 'F'
 			elif np.core.defchararray.equal(self._cover[x, y], 'F'):
 				self._cover[x, y] = ''
-		self.__player_view()
 
 if __name__ == '__main__':
 	game = Minesweeper()

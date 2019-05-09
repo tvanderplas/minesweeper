@@ -196,12 +196,14 @@ class Player_Test(unittest.TestCase):
 
 		p.study()
 		p.update()
+		p.study()
+		p.update()
 
-		self.assertEqual(p.view[0, 3], '')
+		self.assertEqual(p.view[0, 3], '1')
 		self.assertEqual(p.view[1, 3], '1')
 		self.assertEqual(p.view[2, 3], '1')
 		self.assertEqual(p.view[3, 3], '1')
-		self.assertEqual(p.view[4, 3], '')
+		self.assertEqual(p.view[4, 3], '1')
 
 if __name__ == '__main__':
 	unittest.main()

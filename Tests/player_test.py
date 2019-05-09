@@ -147,10 +147,8 @@ class Player_Test(unittest.TestCase):
 		p.game._is_started = True
 		p.update()
 
-		p.game.player_view()
 		p.study()
 		p.update()
-		p.game.player_view()
 
 		self.assertEqual(p.view[0, 0], '')
 		self.assertEqual(p.view[1, 0], '4')

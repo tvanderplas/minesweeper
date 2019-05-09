@@ -92,6 +92,21 @@ class Player_Test(unittest.TestCase):
 		self.assertEqual(p.view[0, 1], 'F')
 		self.assertEqual(p.view[1, 0], 'F')
 
+	def test_check_5(self):
+		setup = scenario_5()
+		p = Player(*setup.shape)
+		p.game._board = setup.board
+		p.game._cover = setup.cover
+		p.game._is_started = True
+		p.update()
+
+		p.check()
+		p.update()
+
+		self.assertEqual(p.view[2, 3], 'F')
+		self.assertEqual(p.view[3, 2], 'F')
+		self.assertEqual(p.view[3, 3], '')
+
 	def test_act_3(self):
 		setup = scenario_3()
 		p = Player(*setup.shape)
@@ -107,6 +122,22 @@ class Player_Test(unittest.TestCase):
 		self.assertEqual(p.view[0, 0], '2')
 		self.assertEqual(p.view[0, 1], 'F')
 		self.assertEqual(p.view[1, 0], 'F')
+
+	def test_act_5(self):
+		setup = scenario_5()
+		p = Player(*setup.shape)
+		p.game._board = setup.board
+		p.game._cover = setup.cover
+		p.game._is_started = True
+		p.update()
+
+		p.check()
+		p.act()
+		p.update()
+
+		self.assertEqual(p.view[2, 3], 'F')
+		self.assertEqual(p.view[3, 2], 'F')
+		self.assertEqual(p.view[3, 3], '2')
 
 	def test_study_1(self):
 		setup = scenario_1()

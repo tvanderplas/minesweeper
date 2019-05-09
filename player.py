@@ -32,18 +32,15 @@ class Player:
 	def get_adj_val(self, x, y, value=''):
 		x_min = (x - 1) if x > 0 else 0
 		y_min = (y - 1) if y > 0 else 0
-		x_max = (x + 2) if x < self.game.height else x + 1
-		y_max = (y + 2) if y < self.game.width else y + 1
+		x_max = x + 2
+		y_max = y + 2
 		box = self.view[x_min:x_max, y_min:y_max] == value
 		return self.__c(self.to_index(box, x_min, y_min), [(x, y)])
 
 	def get_edge_pair(self, x, y):
 		lbound = lambda a: (a - 2) if (a - 1) > 0 else 0
-		ubound = lambda a, limit: (a + 3) if (a + 1) < limit else a + 1
-		x_min = lbound(x)
-		y_min = lbound(y)
-		x_max = ubound(x, self.game.height)
-		y_max = ubound(y, self.game.width)
+		x_min, x_max = lbound(x), x + 3
+		y_min, y_max = lbound(y), y + 3
 
 		adj_mark = lambda a, b: len(self.get_adj_val(a, b, 'F'))
 		value = lambda a, b: int(self.view[a, b]) - adj_mark(a, b)

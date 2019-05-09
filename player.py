@@ -34,9 +34,8 @@ class Player:
 		y_min = (y - 1) if y > 0 else 0
 		x_max = (x + 2) if x < self.game.height else x + 1
 		y_max = (y + 2) if y < self.game.width else y + 1
-		indices = np.where(self.view[x_min:x_max, y_min:y_max] == value)
-		box = [i for i in zip(indices[0] + x_min, indices[1] + y_min)]
-		return self.__c(box, [(x, y)])
+		box = self.view[x_min:x_max, y_min:y_max] == value
+		return self.__c(self.to_index(box, x_min, y_min), [(x, y)])
 
 	def get_edge_pair(self, x, y):
 		lbound = lambda a: (a - 2) if (a - 1) > 0 else 0
@@ -61,8 +60,8 @@ class Player:
 		known = np.core.defchararray.not_equal(self.view, '')
 		nonzero = np.core.defchararray.not_equal(self.view, '0')
 		notmark = np.core.defchararray.not_equal(self.view, 'F')
-		indices = np.where((known) & (nonzero) & (notmark))
-		return [i for i in zip(*indices) if len(self.get_adj_val(*i)) > 0]
+		indices = self.to_index((known) & (nonzero) & (notmark))
+		return [i for i in indices if len(self.get_adj_val(*i)) > 0]
 
 	def check(self):
 		self.new_game()

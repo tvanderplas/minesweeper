@@ -31,6 +31,10 @@ class Minesweeper(object):
 		return self._height
 
 	@property
+	def mines(self):
+		return self._mines
+
+	@property
 	def view(self):
 		return self._cover
 
@@ -41,7 +45,8 @@ class Minesweeper(object):
 		y_max = (y + 2) if y < self._height else y + 1
 		choose = np.ones([self._height, self._width], int)
 		choose[y_min:y_max, x_min:x_max] = 0
-		while self._mines > 0:
+		mines_to_set = self.mines
+		while mines_to_set > 0:
 			toMine = np.where(choose == 1)
 			m = rd.choice([i for i in zip(toMine[0], toMine[1])])
 			choose[m] = 0
@@ -51,7 +56,7 @@ class Minesweeper(object):
 				m_adj = self._board[mx_min:m[0] + 2, my_min:m[1] + 2]
 				m_adj[m_adj >= 0] += 1
 				self._board[m] = -1
-				self._mines -= 1
+				mines_to_set -= 1
 		self._is_started = True
 
 	def player_view(self):
@@ -77,11 +82,15 @@ class Minesweeper(object):
 
 	def clear(self, x, y):
 		not_marked = np.core.defchararray.not_equal(self._cover[x, y], 'F')
+		marked = np.core.defchararray.equal(self._cover, 'F')
 		not_0 = np.core.defchararray.not_equal(self._cover[x, y], '0')
 		if self._is_started == False:
 			self.__start(x, y)
 		if (not_marked) and (not_0) and not self._lose:
 			self.__clear(x, y)
+		if np.count_nonzero(self._cover) == (self.width * self.height):
+			if len(self._cover[marked]) == self.mines:
+				self._win = True
 
 	def mark(self, x, y):
 		if not self._lose:

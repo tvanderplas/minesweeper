@@ -43,7 +43,7 @@ class Player:
 		y_max = ubound(y, self.game.width)
 
 		adj_mark = lambda a, b: len(self.get_adj_val(a, b, 'F'))
-		value = lambda a, b: int(self.view[a, b]) - adj_mark(x, y)
+		value = lambda a, b: int(self.view[a, b]) - adj_mark(a, b)
 		is_big = lambda a, b: value(x, y) >= value(a, b)
 
 		share_unknown = lambda a, b: len(self.__i(

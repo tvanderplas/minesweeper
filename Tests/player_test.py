@@ -67,7 +67,7 @@ class Player_Test(unittest.TestCase):
 		self.assertEqual(p.get_edge_pair(3, 1), [(1, 1), (2, 1)])
 
 	def test_get_edge_pair_4(self):
-		setup = scenario_2()
+		setup = scenario_4()
 		p = Player(*setup.shape)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
@@ -139,7 +139,6 @@ class Player_Test(unittest.TestCase):
 		self.assertEqual(p.view[2, 0], '1')
 		self.assertEqual(p.view[3, 0], '')
 
-	@unittest.skip('skipped')
 	def test_study_4(self):
 		setup = scenario_4()
 		p = Player(*setup.shape)

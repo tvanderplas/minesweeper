@@ -104,6 +104,7 @@ class Player:
 
 	def new_game(self):
 		if self.game._is_started == False:
+			self.unstuck()
 			self.game.clear(self.height // 2, self.width // 2)
 
 	def play(self):
@@ -115,9 +116,16 @@ class Player:
 			self.study()
 
 	def play_series(self, games: int):
-		pass
+		wins, i = 0, games
+		while games > 0:
+			self.game = Minesweeper(self.width, self.height, self.mines)
+			self.play()
+			if self.game.win:
+				wins += 1
+				print(wins, i - games)
+			games -= 1
+		return wins
 
 if __name__ == '__main__':
 	p = Player()
-	p.play()
-	p.game.player_view()
+	print(p.play_series(100))

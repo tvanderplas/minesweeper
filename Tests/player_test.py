@@ -2,13 +2,15 @@
 import context
 import unittest
 from scenario import * # pylint: disable=unused-wildcard-import
-from player import Player, Minesweeper
+from player import Player
+from minesweeper import Minesweeper
 
 class Player_Test(unittest.TestCase):
 
 	def test_get_edges_1(self):
 		setup = scenario_1()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -17,7 +19,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_get_edges_2(self):
 		setup = scenario_2()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -26,7 +29,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_get_edges_4(self):
 		setup = scenario_4()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -35,7 +39,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_get_adj_val_1(self):
 		setup = scenario_1()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -55,7 +60,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_get_edge_pair_2(self):
 		setup = scenario_2()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -68,7 +74,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_get_edge_pair_4(self):
 		setup = scenario_4()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -79,7 +86,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_check_3(self):
 		setup = scenario_3()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -94,7 +102,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_check_5(self):
 		setup = scenario_5()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -109,7 +118,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_act_3(self):
 		setup = scenario_3()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -125,7 +135,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_act_5(self):
 		setup = scenario_5()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -141,7 +152,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_1(self):
 		setup = scenario_1()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -156,7 +168,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_2(self):
 		setup = scenario_2()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -172,7 +185,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_4(self):
 		setup = scenario_4()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -188,7 +202,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_6(self):
 		setup = scenario_6()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -207,7 +222,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_7(self):
 		setup = scenario_7()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True
@@ -226,7 +242,8 @@ class Player_Test(unittest.TestCase):
 
 	def test_study_8(self):
 		setup = scenario_8()
-		p = Player(*setup.shape)
+		game = Minesweeper(*setup.shape)
+		p = Player(game)
 		p.game._board = setup.board
 		p.game._cover = setup.cover
 		p.game._is_started = True

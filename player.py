@@ -4,11 +4,11 @@ import numpy as np
 
 class Player:
 
-	def __init__(self, width:int=30, height:int=16, mines:int=99):
-		self.width = width
-		self.height = height
-		self.mines = mines
-		self.game = Minesweeper(self.width, self.height, self.mines)
+	def __init__(self, game:Minesweeper):
+		self.width = game.width
+		self.height = game.height
+		self.mines = game.mines
+		self.game = game
 		self.stuck = [False, False, False]
 
 	def __i(self, a: list, b: list):
@@ -116,16 +116,10 @@ class Player:
 			self.study()
 
 	def play_series(self, games: int):
-		wins, i = 0, games
-		while games > 0:
-			self.game = Minesweeper(self.width, self.height, self.mines)
-			self.play()
-			if self.game.win:
-				wins += 1
-				print(wins, i - games)
-			games -= 1
-		return wins
+		pass
 
 if __name__ == '__main__':
-	p = Player()
-	print(p.play_series(100))
+	g = Minesweeper()
+	p = Player(g)
+	p.play()
+	p.game.player_view()

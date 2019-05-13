@@ -1,7 +1,7 @@
 
 import context
 import unittest
-from scenario import *
+from scenario import * # pylint: disable=unused-wildcard-import
 from player import Player, Minesweeper
 
 class Player_Test(unittest.TestCase):

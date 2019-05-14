@@ -1,5 +1,5 @@
 
-from minesweeper import Minesweeper
+from minesweeper import Minesweeper, Console_Test
 import numpy as np
 
 class Player:
@@ -119,7 +119,7 @@ class Player:
 		pass
 
 if __name__ == '__main__':
-	g = Minesweeper()
+	g = Console_Test()
 	p = Player(g)
 	p.play()
 	p.game.player_view()

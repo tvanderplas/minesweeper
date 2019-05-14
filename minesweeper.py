@@ -1,8 +1,19 @@
 
 import random as rd
 import numpy as np
+from abc import ABC, abstractmethod
 
-class Minesweeper(object):
+class Minesweeper(ABC):
+
+	@abstractmethod
+	def mark(self):
+		pass
+
+	@abstractmethod
+	def clear(self):
+		pass
+
+class Console_Test(Minesweeper, object):
 
 	def __init__(self, width:int=30, height:int=16, mines:int=99):
 		self._is_started = False
@@ -100,5 +111,6 @@ class Minesweeper(object):
 				self._cover[x, y] = ''
 
 if __name__ == '__main__':
-	game = Minesweeper()
+	game = Console_Test()
 	game.clear(8, 8)
+	game.player_view()

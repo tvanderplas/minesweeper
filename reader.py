@@ -4,6 +4,34 @@ from PIL import ImageGrab, Image
 import numpy as np
 import cv2
 
+class Game_UI(object):
+
+	def __init__(self, width:int=30, height:int=16, mines:int=99):
+		self._width = width
+		self._height = height
+		self._mines = mines
+
+	@property
+	def width(self):
+		return self._width
+
+	@property
+	def height(self):
+		return self._height
+
+	@property
+	def mines(self):
+		return self._mines
+
+	def read(self, x, y):
+		pass
+
+	def mark(self, x, y):
+		pass
+
+	def clear(self, x, y):
+		pass
+
 def bgr_to_rgb(image: np.array):
 	red = np.copy(image[::, ::, 0])
 	image[::, ::, 0] = image[::, ::, 2]

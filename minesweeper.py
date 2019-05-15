@@ -2,6 +2,7 @@
 import random as rd
 import numpy as np
 from abc import ABC, abstractmethod
+from reader import Game_UI
 
 class Minesweeper(ABC):
 
@@ -109,6 +110,35 @@ class Console_Test(Minesweeper, object):
 				self._cover[x, y] = 'F'
 			elif np.core.defchararray.equal(self._cover[x, y], 'F'):
 				self._cover[x, y] = ''
+
+class UI_Interpreter(Minesweeper, object):
+
+	def __init__(self, game:Game_UI):
+		self.game = game
+		self._cover = np.zeros([game.height, game.width], dtype=(np.str_))
+
+	@property
+	def view(self):
+		return self._cover
+
+	def player_view(self):
+		print(''.join(['*' * 3 * self.game.width]))
+		print('\n'.join([' '.join([str(cell).rjust(2) for cell in row]) for row in self._cover]))
+		print(''.join(['*' * 3 * self.game.width]))
+
+	def mark(self, x, y):
+		if np.core.defchararray.equal(self._cover[x, y], ''):
+			self._cover[x, y] = 'F'
+			self.game.mark(x, y)
+		elif np.core.defchararray.equal(self._cover[x, y], 'F'):
+			self._cover[x, y] = ''
+			self.game.mark(x, y)
+	
+	def clear(self, x, y):
+		unknown = np.core.defchararray.equal(self._cover, '')
+		if unknown:
+			self.game.clear(x, y)
+			self._cover[x, y] = self.game.read(x, y)
 
 if __name__ == '__main__':
 	game = Console_Test()

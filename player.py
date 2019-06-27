@@ -54,6 +54,7 @@ class Player:
 		return [i for i in fbox if is_big(*i) and share_unknown(*i)]
 
 	def get_edges(self):
+		"""returns indices of every cell in the current game that borders an unknown cell"""
 		known = np.core.defchararray.not_equal(self.view, '')
 		nonzero = np.core.defchararray.not_equal(self.view, '0')
 		notmark = np.core.defchararray.not_equal(self.view, 'F')

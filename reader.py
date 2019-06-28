@@ -33,7 +33,7 @@ class Game_UI(object):
 		pass
 
 if __name__ == '__main__':
-		
+
 	def bgr_to_rgb(image: np.array):
 		red = np.copy(image[::, ::, 0])
 		image[::, ::, 0] = image[::, ::, 2]

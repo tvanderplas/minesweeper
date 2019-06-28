@@ -66,7 +66,7 @@ class Player_Test(unittest.TestCase):
 		p.game._cover = setup.cover
 		p.game._is_started = True
 		p.update()
-		
+
 		self.assertEqual(p.get_edge_pair(0, 1), [(1, 1), (2, 1)])
 		self.assertEqual(p.get_edge_pair(1, 1), [(0, 1), (2, 1), (3, 1)])
 		self.assertEqual(p.get_edge_pair(2, 1), [(0, 1), (1, 1), (3, 1)])
@@ -80,7 +80,7 @@ class Player_Test(unittest.TestCase):
 		p.game._cover = setup.cover
 		p.game._is_started = True
 		p.update()
-		
+
 		self.assertEqual(p.get_edge_pair(2, 1), [(3, 1)])
 		self.assertEqual(p.get_edge_pair(3, 1), [(2, 1)])
 

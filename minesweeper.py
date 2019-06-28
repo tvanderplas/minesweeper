@@ -133,7 +133,7 @@ class UI_Interpreter(Minesweeper, object):
 		elif np.core.defchararray.equal(self._cover[x, y], 'F'):
 			self._cover[x, y] = ''
 			self.game.mark(x, y)
-	
+
 	def clear(self, x, y):
 		unknown = np.core.defchararray.equal(self._cover, '')
 		if unknown:

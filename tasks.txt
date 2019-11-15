@@ -1,0 +1,6 @@
+
+get screenshot
+make labels in tensorflow
+write script to break down screenshot
+
+id cells on a single screenshot

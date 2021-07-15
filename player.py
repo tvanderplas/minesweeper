@@ -111,10 +111,12 @@ class Player:
 
 	def play(self):
 		self.new_game()
-		while self.game.lose == False and all(self.stuck) == False:
-			while self.game.lose == False and all(self.stuck[:2]) == False:
+		while all(self.stuck) == False:
+			while not self.game.lose and all(self.stuck[:2]) == False:
 				self.check()
 				self.act()
+			if self.game.lose:
+				break
 			self.study()
 
 	def play_series(self, games: int):
@@ -126,4 +128,10 @@ if __name__ == '__main__':
 	p = Player(g)
 	p.play()
 	p.game.player_view()
-	print(time.perf_counter() - start_time)
+	elapsed = time.perf_counter() - start_time
+	if g.win:
+		print(f'Successfully completed game in {elapsed:.2f} seconds')
+	elif not g.lose:
+		print(f'Got stuck and quit after {elapsed:.2f} seconds')
+	else:
+		print(f'Lost the game or something else weird happened after {elapsed:.2f} seconds')

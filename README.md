@@ -16,7 +16,7 @@ cd minesweeper
 python -m venv env
 ```
 
-Activate the environment (use `env/bin/activate` for linux)
+Activate the environment (use `source env/bin/activate` for mac, linux)
 
 ```
 env\Scripts\activate

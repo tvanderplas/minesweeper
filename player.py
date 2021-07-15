@@ -1,6 +1,7 @@
 
 from minesweeper import Minesweeper, Console_Test
 import numpy as np
+import time
 
 class Player:
 
@@ -120,7 +121,9 @@ class Player:
 		pass
 
 if __name__ == '__main__':
+	start_time = time.perf_counter()
 	g = Console_Test()
 	p = Player(g)
 	p.play()
 	p.game.player_view()
+	print(time.perf_counter() - start_time)
